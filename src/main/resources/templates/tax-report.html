@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tax Report</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Tax Report for <span th:text="${month}"></span></h1>
+        <a th:href="@{/hr/payroll}" class="btn btn-secondary"
+          >Back to Payroll</a
+        >
+        <a th:href="@{/hr/dashboard}" class="btn btn-secondary"
+          >Back to Dashboard</a
+        >
+        <a th:href="@{/logout}" class="btn btn-secondary">Logout</a>
+      </header>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>Employee ID</th>
+              <th>Employee Name</th>
+              <th>Base Salary</th>
+              <th>Tax</th>
+              <th>Final Salary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="payroll : ${payrolls}">
+              <td th:text="${payroll.employee.id}"></td>
+              <td th:text="${payroll.employee.name}"></td>
+              <td th:text="${payroll.baseSalary}"></td>
+              <td th:text="${payroll.tax}"></td>
+              <td th:text="${payroll.finalSalary}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>

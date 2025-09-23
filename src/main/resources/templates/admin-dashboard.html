@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <h1>Admin Dashboard</h1>
+    <p>Welcome, <span th:text="${session.user.name}"></span>!</p>
+    <a href="/admin/employees" class="button">Manage Employees</a>
+    <a href="/admin/requests" class="button">Onboarding Requests</a>
+    <a href="/admin/leave/submit" class="button">Submit Leave Request</a>
+    <a href="/admin/payroll" class="button">View Payroll Report</a>
+    <a href="/logout" class="button">Logout</a>
+  </body>
+</html>

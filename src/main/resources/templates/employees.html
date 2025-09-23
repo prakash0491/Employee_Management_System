@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manage Employees</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <h1>Manage Employees</h1>
+    <div th:if="${param.updated}" class="success">
+      Employee updated successfully!
+    </div>
+    <div th:if="${param.deleted}" class="success">
+      Employee deleted successfully!
+    </div>
+    <div th:if="${param.rated}" class="success">
+      Performance rating submitted successfully!
+    </div>
+    <div th:if="${param.added}" class="success">
+      Employee added successfully!
+    </div>
+    <a href="/admin/employees/add" class="button">Add Employee</a>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Role</th>
+          <th>Salary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="employee : ${employees}">
+          <td th:text="${employee.name}"></td>
+          <td th:text="${employee.email}"></td>
+          <td th:text="${employee.department}"></td>
+          <td th:text="${employee.role}"></td>
+          <td th:text="${employee.salary}"></td>
+          <td>
+            <a
+              th:href="@{'/admin/employees/edit/' + ${employee.id}}"
+              class="button"
+              >Edit</a
+            >
+            <form
+              th:action="@{'/admin/employees/delete/' + ${employee.id}}"
+              method="post"
+              style="display: inline"
+            >
+              <button type="submit" class="button">Delete</button>
+            </form>
+            <a
+              th:href="@{'/admin/employees/rating/' + ${employee.id}}"
+              class="button"
+              >Rate</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="/admin/dashboard" class="button">Back to Admin Dashboard</a>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manage Leave Requests</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <h1>Manage Leave Requests</h1>
+    <div th:if="${param.approved}" class="success">Request Approved</div>
+    <div th:if="${param.rejected}" class="error">Request Rejected</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Reason</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="leave : ${leaveRequests}">
+          <td th:text="${leave.employee.name}"></td>
+          <td
+            th:text="${#temporals.format(leave.startDate, 'yyyy-MM-dd')}"
+          ></td>
+          <td th:text="${#temporals.format(leave.endDate, 'yyyy-MM-dd')}"></td>
+          <td th:text="${leave.reason}"></td>
+          <td th:text="${leave.status}"></td>
+          <td>
+            <form
+              th:action="@{'/hr/leaves/approve/' + ${leave.id}}"
+              method="post"
+              style="display: inline"
+              th:unless="${leave.status == 'APPROVED'}"
+            >
+              <button type="submit" class="button">Approve</button>
+            </form>
+            <form
+              th:action="@{'/hr/leaves/reject/' + ${leave.id}}"
+              method="post"
+              style="display: inline"
+              th:unless="${leave.status == 'REJECTED'}"
+            >
+              <button type="submit" class="button">Reject</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="/hr/dashboard" class="button">Back to HR Dashboard</a>
+  </body>
+</html>

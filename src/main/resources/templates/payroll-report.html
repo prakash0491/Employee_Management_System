@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Payroll Report</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <h1>Payroll Report</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Month</th>
+          <th>Amount (Salary + Bonus)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="payroll : ${payrolls}">
+          <td th:text="${payroll.employee.name}"></td>
+          <td th:text="${payroll.month}"></td>
+          <td th:text="${payroll.amount}"></td>
+          <td th:text="${payroll.status}"></td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="/admin/dashboard" class="button">Back to Admin Dashboard</a>
+  </body>
+</html>

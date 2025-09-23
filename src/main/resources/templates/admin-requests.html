@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Onboarding Requests</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Admin: Onboarding Requests</h1>
+        <a th:href="@{/admin/dashboard}" class="btn btn-secondary"
+          >Back to Dashboard</a
+        >
+        <a th:href="@{/logout}" class="btn btn-secondary">Logout</a>
+      </header>
+      <section>
+        <h2>Pending Onboarding Requests</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Role</th>
+              <th>Email</th>
+              <th>Salary</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="request : ${requests}">
+              <td th:text="${request.id}"></td>
+              <td th:text="${request.name}"></td>
+              <td th:text="${request.department}"></td>
+              <td th:text="${request.role}"></td>
+              <td th:text="${request.email}"></td>
+              <td th:text="${request.salary}"></td>
+              <td th:text="${request.status}"></td>
+              <td>
+                <a
+                  th:href="@{/admin/requests/approve/{id}(id=${request.id})}"
+                  class="btn btn-sm btn-primary"
+                  >Approve</a
+                >
+                <a
+                  th:href="@{/admin/requests/reject/{id}(id=${request.id})}"
+                  onclick="return confirm('Are you sure?')"
+                  class="btn btn-sm btn-danger"
+                  >Reject</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>

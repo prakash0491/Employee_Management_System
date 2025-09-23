@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manage Onboarding Requests</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <h1>Manage Onboarding Requests</h1>
+    <div th:if="${param.accepted}" class="success">Accepted Successfully</div>
+    <div th:if="${param.rejected}" class="error">Rejected</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Role</th>
+          <th>Salary</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="request : ${onboardingRequests}">
+          <td th:text="${request.name}"></td>
+          <td th:text="${request.email}"></td>
+          <td th:text="${request.department}"></td>
+          <td th:text="${request.role}"></td>
+          <td th:text="${request.salary}"></td>
+          <td th:text="${request.status}"></td>
+          <td>
+            <form
+              th:action="@{'/admin/requests/accept/' + ${request.id}}"
+              method="post"
+              style="display: inline"
+            >
+              <button type="submit" class="button">Accept</button>
+            </form>
+            <form
+              th:action="@{'/admin/requests/reject/' + ${request.id}}"
+              method="post"
+              style="display: inline"
+            >
+              <button type="submit" class="button">Reject</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="/admin/dashboard" class="button">Back to Admin Dashboard</a>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calculate Bonus</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <h1>Calculate Bonus</h1>
+    <div th:if="${param.calculated}" class="success">
+      Bonus Calculated Successfully
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Role</th>
+          <th>Salary</th>
+          <th>Bonus</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="employee : ${employees}">
+          <td th:text="${employee.name}"></td>
+          <td th:text="${employee.email}"></td>
+          <td th:text="${employee.department}"></td>
+          <td th:text="${employee.role}"></td>
+          <td th:text="${employee.salary}"></td>
+          <td th:text="${employee.bonus}"></td>
+          <td>
+            <form
+              th:action="@{'/hr/bonus/calculate/' + ${employee.id}}"
+              method="post"
+              style="display: inline"
+            >
+              <button type="submit" class="button">Calculate Bonus</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="/hr/dashboard" class="button">Back to HR Dashboard</a>
+  </body>
+</html>

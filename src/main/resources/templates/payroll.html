@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Payroll Processing</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <h1>Payroll Processing</h1>
+    <div th:if="${param.success}" class="success">
+      Payroll processed successfully!
+    </div>
+    <form th:action="@{/hr/payroll}" method="post">
+      <label for="employeeId">Select Employee:</label>
+      <select id="employeeId" name="employeeId" required>
+        <option value="">-- Select Employee --</option>
+        <option
+          th:each="employee : ${employees}"
+          th:value="${employee.id}"
+          th:text="${employee.name + ' (' + employee.email + ')'}"
+        ></option>
+      </select>
+      <br /><br />
+      <label for="month">Month:</label>
+      <input
+        type="text"
+        id="month"
+        name="month"
+        placeholder="e.g., April 2025"
+        required
+      />
+      <br /><br />
+      <button type="submit">Process Payroll</button>
+    </form>
+    <a href="/hr/dashboard">Back to HR Dashboard</a>
+  </body>
+</html>

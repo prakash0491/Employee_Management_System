@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title th:text="${employee.id} ? 'Edit Employee' : 'Add Employee'"></title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <h1 th:text="${employee.id} ? 'Edit Employee' : 'Add Employee'"></h1>
+    <form
+      th:action="${employee.id} ? @{'/admin/employees/update/' + ${employee.id}} : @{'/admin/employees/save'}"
+      th:object="${employee}"
+      method="post"
+    >
+      <label for="name">Name:</label>
+      <input type="text" id="name" th:field="*{name}" required />
+      <br /><br />
+      <label for="email">Email:</label>
+      <input type="email" id="email" th:field="*{email}" required />
+      <br /><br />
+      <label for="department">Department:</label>
+      <input type="text" id="department" th:field="*{department}" required />
+      <br /><br />
+      <label for="role">Role:</label>
+      <input type="text" id="role" th:field="*{role}" required />
+      <br /><br />
+      <label for="salary">Salary:</label>
+      <input type="number" id="salary" th:field="*{salary}" required />
+      <br /><br />
+      <button
+        type="submit"
+        th:text="${employee.id} ? 'Update Employee' : 'Add Employee'"
+      ></button>
+    </form>
+    <a href="/admin/employees" class="button">Back to Employee List</a>
+  </body>
+</html>
