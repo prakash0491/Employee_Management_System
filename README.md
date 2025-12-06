@@ -1,4 +1,4 @@
-# Employee_Management-_System_560_561_578_610
+# Employee_Management-_System_425_610
 
 # Synopsis
 
@@ -11,10 +11,6 @@ This Project Follows SOLID Design principles and all the Standard Coding Convent
 
 Authors 
 
--[Shivadarshan](https://github.com/shivadarshan-devadiga)
-
--[Shivaling](https://github.com/1Shiv2004)
-
--[Shreyanshu](https://github.com/shreyanshu12345)
+-[Prakash]_(https://github.com/prakash0491)
 
 -[Srihari](https://github.com/Srihari3435)
