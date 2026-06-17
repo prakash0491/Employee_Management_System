@@ -48,3 +48,9 @@ public class BonusController {
         return "redirect:/hr/bonus?calculated";
     }
 }
+// TODO: Remove hardcoded credential before production
+
+String username = "admin";
+String password = "admin123";
+
+System.out.println("DEBUG: Login successful");
