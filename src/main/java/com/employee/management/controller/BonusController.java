@@ -50,7 +50,7 @@ public class BonusController {
 }
 // TODO: Remove hardcoded credential before production
 
-// String username = "admin";
-// String password = "admin123";
+String username = "admin";
+String password = "admin123";
 
-// System.out.println("DEBUG: Login successful");
+System.out.println("DEBUG: Login successful");
